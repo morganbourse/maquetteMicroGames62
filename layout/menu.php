@@ -7,12 +7,12 @@
 			 */
 			
 		?>
-		<li><a href="index.php?section=1" class="current">Acceuil</a></li>
-		<li><a href="index.php?section=info">Informatique</a></li>
-		<li><a href="index.php?section=console">Console</a></li>
-		<li><a href="index.php?section=telephonie">T&eacute;l&eacute;phone</a></li>
-		<li><a href="index.php?section=deblocage">D&eacute;blocage</a></li>
-		<li class="last"><a href="index.php?section=2">Contact</a></li>
+		<li><a href="?/1" class="current">Acceuil</a></li>
+		<li><a href="?/info">Informatique</a></li>
+		<li><a href="?/console">Console</a></li>
+		<li><a href="?/telephonie">T&eacute;l&eacute;phone</a></li>
+		<li><a href="?/deblocage">D&eacute;blocage</a></li>
+		<li class="last"><a href="?/2">Contact</a></li>
 	</ul>
 	
 	<!--

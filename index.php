@@ -15,8 +15,23 @@
 				 */
 				
 				$pages = array("1" => "home", "2" => "contact");
-				$section = (isset($_GET['section'])) ? htmlspecialchars($_GET['section']) : '1';
-								
+				$route = htmlspecialchars($_SERVER['QUERY_STRING']);				
+				$section = '';
+				
+				$sections = mb_split ("/", $route);
+				
+				if(count($sections) >= 2)
+				{
+					$section = $sections[1];
+				}
+				else if(count($sections) == 1 && mb_strlen(trim($sections[0])) === 0)
+				{
+					//home page
+					$section = '1';
+				}
+				
+				//mecanisme de routing pour appel de la methode controlleur
+				
 				if(array_key_exists($section, $pages))
 				{
 					$requestedPage = $pages[$section];					
@@ -24,7 +39,7 @@
 				}
 				else
 				{
-					include_once("src/content/home.php");
+					include_once("layout/404.php");
 				}
 			?>
 		</div>
