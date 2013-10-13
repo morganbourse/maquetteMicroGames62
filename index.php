@@ -1,5 +1,5 @@
 <?php
-	require_once('layout/header.html');
+	require_once('layout/header.php');
 ?>
 <div id="templatemo_wrapper">
     <div id="templatemo_content_top"></div>
@@ -14,10 +14,10 @@
 				 *	colonne 2 : page associée
 				 */
 				
-				$pages = array("1" => "home", "2" => "contact");
+				$pages = array("1" => "home", "6" => "contact");
 				$route = htmlspecialchars($_SERVER['QUERY_STRING']);				
 				$section = '';
-				
+
 				$sections = mb_split ("/", $route);
 				
 				if(count($sections) >= 2)
@@ -35,7 +35,7 @@
 				if(array_key_exists($section, $pages))
 				{
 					$requestedPage = $pages[$section];					
-					include_once("src/content/$requestedPage.php");
+					include_once("src/view/$requestedPage.php");
 				}
 				else
 				{

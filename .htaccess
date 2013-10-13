@@ -1,1 +1,5 @@
+<ifDefine Free>
+php 1
+</ifDefine>
+
 #ErrorDocument 404 http://localhost/maquetteMicroGames62/404.php
