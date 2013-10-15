@@ -1,10 +1,23 @@
 <?php
-	require_once ('/src/model/services/impl/MenuService.php');
-	require_once ('/src/utils/CollectionUtils.php');
-	require_once ('/src/utils/StringUtils.php');
+	require_once ('/src/model/services/impl/MenuService.php');	
+	require_once ('/src/controller/Controller.php');
 						
-	class MenuController
+	class MenuController extends Controller
 	{
+		/**
+		 * @see src/controller/Controller::index()
+		 */
+		public function index()
+		{
+			
+		}
+		
+		/**
+		 * get html menu
+		 * @param array $tabs
+		 * @param String $currentId
+		 * @return string
+		 */
 		public function getMenu(Array $tabs = null, $currentId = null)
 		{
 			if(CollectionUtils::isEmpty($tabs))
@@ -20,7 +33,8 @@
 				foreach ($tabs as $tab)
 				{
 					$tabId = $tab->getId();
-					$tabLabel = $tab->getLabel();					
+					$tabLabel = $tab->getLabel();	
+					$pageName = $tab->getPageName();				
 					$className = "";
 					
 					if(!StringUtils::isEmpty($currentId))
@@ -32,7 +46,7 @@
 						$className = 'class="current"';
 					}
 					
-					$menuContentHtml .= '<li><a href="?/' . $tabId . '"' . $className . '>' . $tabLabel . '</a></li>';
+					$menuContentHtml .= '<li><a href="?/' . $pageName . '"' . $className . '>' . $tabLabel . '</a></li>';
 				}
 			}
 			

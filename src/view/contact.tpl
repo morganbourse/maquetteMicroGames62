@@ -59,8 +59,8 @@
 	<h4>Coordonn&eacute;es</h4>
 	<div class="col_w280">
 		<h3>Adresse</h3>
-		20 rue Toto<br />
-		00000 TotoVille
+		{$address}<br />
+		{$codePostal} {$ville}
 		<br /><br />
 		<a href="#" id="showMap">Afficher sur la carte</a>
 		<input id="mapAddress" type="hidden" value="70 Rue Maurice Bouchery 59480 La Bassee" />
@@ -68,7 +68,7 @@
 	
 	<div class="col_w280">
 		<h3>T&eacute;l&eacute;phone</h3>
-		03.21.00.00.00
+		{$tel}
 	</div>
 	<div id="map-canvas" style="border:1px outset black; margin:0 auto; display:none; width:80%; height:200px;"></div>
 	<div class="cleaner"></div>
