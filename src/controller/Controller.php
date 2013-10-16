@@ -19,7 +19,7 @@ abstract class Controller
 	public function Controller()
 	{
 		RainTPL::$tpl_dir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR;
-		RainTPL::$cache_dir = DIRECTORY_SEPARATOR . "tmp";
+		RainTPL::$cache_dir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR;
 		RainTPL::$path_replace = false;
 		RainTPL::$tpl_ext = "tpl";
 

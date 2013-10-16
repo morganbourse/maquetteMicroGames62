@@ -19,7 +19,7 @@
 				define('DEFAULT_PAGE', "home");
 				
 				$pages = array("home" => array("acceuil/Home" => "index"), "contact" => array("contact/Contact" => "index"));
-				$route = htmlspecialchars($_SERVER['QUERY_STRING']);				
+				$route = htmlspecialchars($_SERVER['QUERY_STRING']);
 				$page = '';
 
 				$sections = mb_split ("/", $route);
@@ -59,6 +59,9 @@
 				{
 					include_once("layout/404.php");
 				}
+
+// 			require_once ('/src/controller/FrontController.php');
+// 			$router = new FrontController();
 			?>
 		</div>
         
