@@ -203,6 +203,22 @@ class StringUtils
 		$str = strval($str);
 		return (empty($str) && strlen($str) == 0);
 	}
+	
+	/**
+	 * Safely checks if a string is blank
+	 *
+	 * A string will be considered empty when its length
+	 * is 0 and a call to the {@link empty()} public static function
+	 * returns TRUE.
+	 *
+	 * @param string $str Input string
+	 * @return bool
+	 * @static
+	 */
+	public static function isBlank($str) {
+		$str = strval($str);
+		return (empty($str) && strlen(trim($str)) == 0);
+	}
 
 	/**
 	 * Returns a fallback value when a given string is empty

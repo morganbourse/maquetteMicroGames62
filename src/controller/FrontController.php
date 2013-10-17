@@ -1,91 +1,182 @@
 <?php
-require_once ('/src/controller/IFrontController.php');
-class FrontController implements IFrontController {
-	const CONTROLLER_EXTENSION = "Controller";
-	const DEFAULT_CONTROLLER = "Home";
-	const DEFAULT_ACTION = "index";
-	const CONTROLLER_PATH = "./";
-	const DEFAULT_URL = "home";
+require_once ('/inc/Routes.php');
+/**
+ * Dispatch request for call controller method
+ * 
+ * @author Morgan
+ *
+ */
+class FrontController {
+	const CONTROLLER_EXTENSION = "Controller";	
+	const CONTROLLER_PATH = DIRECTORY_SEPARATOR;
+	const PHP_EXTENSION = ".php";
+	const DEFAULT_URL = "/home";
 	const REST_URL = "QUERY_STRING";
 	
-	protected $controller = self::DEFAULT_CONTROLLER;
-	protected $action = self::DEFAULT_ACTION;
+	protected $controller;
+	protected $action;
 	protected $params = array ();
 	protected $basePath = "/";
 	
 	public function __construct() {
-		$this->controller = $this->controller . self::CONTROLLER_EXTENSION;
 		$this->parseUri ();
 		$this->run ();
 	}
 	
+	/**
+	 * parse the uri for determinate route
+	 */
 	protected function parseUri() {
 		$route = htmlspecialchars ( $_SERVER [self::REST_URL] );
-		$page = '';
 		
-		$sections = mb_split ( "/", $route );
-		
-		if (count ( $sections ) >= 2) {
-			$page = $sections [1];
-		} else if (count ( $sections ) == 1 && mb_strlen ( trim ( $sections [0] ) ) === 0) {
-			// home page
-			$page = self::DEFAULT_URL;
+		if(StringUtils::isBlank($route))
+		{
+			$route = self::DEFAULT_URL;
 		}
 		
-		// mecanisme de routing pour appel de la methode controlleur
+		$routeInfo = Routes::getInstance()->match($route);
 		
-		if (array_key_exists ( $page, $pages )) {
-			$routeInfo = $pages [$page];
-			$controllerPath = array_keys ( $routeInfo );
-			$controllerPath = $controllerPath [0];
-			
-			$controllerName = basename ( $controllerPath ) . CONTROLLER_EXTENSION;
-			
-			$method = $routeInfo [$controllerPath];
-			$controller = __DIR__ . CONTROLLER_PATH . $controllerPath . CONTROLLER_EXTENSION . PHP_EXTENSION;
-			
-			if (is_file ( $controller )) {
-				require_once ($controller);
-				call_user_func_array ( array (
-						new $controllerName (),
-						$method 
-				), array () );
-			}
-			// echo "controller : $controller, method : $method";
-			// include_once("src/view/$page.tpl");
-		} else {
-			include_once ("layout/404.php");
+		if(CollectionUtils::isEmpty($routeInfo))
+		{
+			include_once(DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR . "404.php");
+			$this->setHeader(404);
+			return;			
 		}
+		
+		$this->setController($routeInfo[Routes::CONTROLLER_ROUTE_INDEX], $route);
+		$this->setAction($routeInfo[Routes::METHOD_ROUTE_INDEX]);
+		$this->setParams($routeInfo[Routes::PARAMS_ROUTE_INDEX]);
 	}
 	
-	public function setController($controller) {
-		$controller = ucfirst ( strtolower ( $controller ) ) . "Controller";
+	/**
+	 * set the controller
+	 * 
+	 * @param unknown $controller
+	 * @param unknown $route
+	 * @throws InvalidArgumentException
+	 */
+	protected function setController($controller, $route) {
+		$controllerPath = __DIR__ . self::CONTROLLER_PATH . $controller . self::CONTROLLER_EXTENSION . self::PHP_EXTENSION;
+		$controller = ucfirst(basename($controller)) . self::CONTROLLER_EXTENSION;		
+		
+		if (!is_file ( $controllerPath )) {
+			throw new InvalidArgumentException ( "The controller cannot be found for route $route." );
+		}
+		
+		require_once ($controllerPath);
+		
 		if (! class_exists ( $controller )) {
-			throw new InvalidArgumentException ( "The action controller '$controller' has not been defined." );
+			throw new InvalidArgumentException ( "The controller cannot be found for route $route." );
 		}
 		$this->controller = $controller;
-		return $this;
 	}
 	
-	public function setAction($action) {
+	/**
+	 * set the called method in controller
+	 * 
+	 * @param unknown $action
+	 * @throws InvalidArgumentException
+	 */
+	protected function setAction($action) {
 		$reflector = new ReflectionClass ( $this->controller );
 		if (! $reflector->hasMethod ( $action )) {
 			throw new InvalidArgumentException ( "The controller action '$action' has been not defined." );
 		}
 		$this->action = $action;
-		return $this;
 	}
 	
-	public function setParams(array $params) {
+	/**
+	 * set array params passed to the controller
+	 * 
+	 * @param array $params
+	 */
+	protected function setParams(Array $params = null) {
+		if($params == null)
+		{
+			$params = array();
+		}
+		
 		$this->params = $params;
-		return $this;
 	}
 	
-	public function run() {
-		call_user_func_array ( array (
-				new $this->controller (),
-				$this->action 
-		), $this->params );
+	/**
+	 * run controller method
+	 */
+	protected function run() {
+		if(!StringUtils::isBlank($this->controller))
+		{
+			call_user_func_array ( array (
+					new $this->controller(),
+					$this->action 
+			), $this->params );
+		}
+	}
+	
+	/**
+	 * get status from code
+	 * 
+	 * @param unknown $code
+	 * @return string
+	 */
+	private function getStatusMessage($code){
+		$status = array(
+				100 => 'Continue',
+				101 => 'Switching Protocols',
+				200 => 'OK',
+				201 => 'Created',
+				202 => 'Accepted',
+				203 => 'Non-Authoritative Information',
+				204 => 'No Content',
+				205 => 'Reset Content',
+				206 => 'Partial Content',
+				300 => 'Multiple Choices',
+				301 => 'Moved Permanently',
+				302 => 'Found',
+				303 => 'See Other',
+				304 => 'Not Modified',
+				305 => 'Use Proxy',
+				306 => '(Unused)',
+				307 => 'Temporary Redirect',
+				400 => 'Bad Request',
+				401 => 'Unauthorized',
+				402 => 'Payment Required',
+				403 => 'Forbidden',
+				404 => 'Not Found',
+				405 => 'Method Not Allowed',
+				406 => 'Not Acceptable',
+				407 => 'Proxy Authentication Required',
+				408 => 'Request Timeout',
+				409 => 'Conflict',
+				410 => 'Gone',
+				411 => 'Length Required',
+				412 => 'Precondition Failed',
+				413 => 'Request Entity Too Large',
+				414 => 'Request-URI Too Long',
+				415 => 'Unsupported Media Type',
+				416 => 'Requested Range Not Satisfiable',
+				417 => 'Expectation Failed',
+				500 => 'Internal Server Error',
+				501 => 'Not Implemented',
+				502 => 'Bad Gateway',
+				503 => 'Service Unavailable',
+				504 => 'Gateway Timeout',
+				505 => 'HTTP Version Not Supported');
+		return ($status[$code])?$status[$code]:$status[500];
+	}
+	
+	/**
+	 * set http header
+	 * 
+	 * @param unknown $code
+	 * @param string $contentType
+	 */
+	private function setHeader($code, $contentType = null){
+		header("HTTP/1.1 ".$code." ".$this->getStatusMessage($code));
+		
+		if(!StringUtils::isBlank($contentType))
+		{
+			header("Content-Type:".$this->_content_type);
+		}
 	}
 }
 
