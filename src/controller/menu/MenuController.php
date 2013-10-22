@@ -2,6 +2,12 @@
 	require_once ('/src/model/services/impl/MenuService.php');	
 	require_once ('/src/controller/Controller.php');
 						
+	/**
+	 * Menu controller
+	 * 
+	 * @author Morgan
+	 *
+	 */
 	class MenuController extends Controller
 	{
 		/**

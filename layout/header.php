@@ -7,8 +7,8 @@
 <meta name="description" content="MicroGames62 - Réparation de consoles de jeux, informatique, telephonie" />
 <link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
 
-<script language="javascript" type="text/javascript" src="js/script.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 <div id="templatemo_header_wrapper">

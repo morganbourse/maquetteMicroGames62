@@ -37,10 +37,9 @@ class FrontController {
 		$routeInfo = Routes::getInstance()->match($route);
 		
 		if(CollectionUtils::isEmpty($routeInfo))
-		{
-			include_once(DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR . "404.php");
+		{			
 			$this->setHeader(404);
-			return;			
+			return;
 		}
 		
 		$this->setController($routeInfo[Routes::CONTROLLER_ROUTE_INDEX], $route);
