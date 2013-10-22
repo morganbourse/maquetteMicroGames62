@@ -21,10 +21,9 @@
 		/**
 		 * get html menu
 		 * @param array $tabs
-		 * @param String $currentId
 		 * @return string
 		 */
-		public function getMenu(Array $tabs = null, $currentId = null)
+		public function getMenu(Array $tabs = null)
 		{
 			if(CollectionUtils::isEmpty($tabs))
 			{
@@ -42,12 +41,8 @@
 					$tabLabel = $tab->getLabel();	
 					$pageName = $tab->getPageName();				
 					$className = "";
-					
-					if(!StringUtils::isEmpty($currentId))
-					{
-						$className = 'class="current"';
-					}
-					else if(StringUtils::isEmpty($currentId) && $tabId == 1)
+										
+					if($tabId == 1)
 					{
 						$className = 'class="current"';
 					}
