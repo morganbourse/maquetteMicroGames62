@@ -10,6 +10,7 @@ $(
 		var divContent = $("#templatemo_main_content");
 		var pageNotFound = "./layout/404.html";
 		var menuSelectedClass = "current";
+		
 		$("#templatemo_menu * a").click(
 			function(event)
 			{

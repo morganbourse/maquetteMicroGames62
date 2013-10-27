@@ -1,4 +1,3 @@
-<script language="javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script language="javascript">
 	var geocoder;
 	var map;
@@ -14,7 +13,6 @@
 	}
 
 	function showMap(address) {
-		$('#map-canvas').show();
 		initialize();
 		
 		geocoder.geocode( { 'address': address}, function(results, status) {
@@ -32,27 +30,45 @@
 		});
 	}
 
-	$(function() {
+	$(function() {		
+		$("#dialog").hide();
+		
+		$(".button").button();
+		
 		$("#showMap").click(
 			function( event ) {
 				event.preventDefault();
-				if($('#map-canvas').css('display') == "none")
-				{
-					$(this).text("Masquer la carte");
-					var address = $('#mapAddress').val();
-					showMap(address);
-				}
-				else
-				{
-					$(this).text("Afficher sur la carte");					
-					$('#map-canvas').hide();
-				}
+				$("#mapDialog").dialog({
+					modal: true,
+					open: function( event, ui ) {
+						var address = $('#mapAddress').val();
+						showMap(address);
+					},					
+					height:"600",
+					width:"800"
+				});
 			}
 		);
+		
+		function loadScript() {
+			  var s = document.createElement("script");
+			   s.type = "text/javascript";
+			   s.src  = "http://maps.google.com/maps/api/js?key={$mapsKey}&v=3&sensor=true&callback=gmap_draw";
+			   window.gmap_draw = function(){
+			       initialize();
+			   };
+			   $("head").append(s);			   
+		}
+		
+		loadScript();
 	});	
 </script>
 
 <div class="content_box">
+	<div id="mapDialog" title="Carte">
+		<div id="map-canvas" style="border:1px outset black; margin:0 auto; display:none; width:100%; height:100%;"></div>
+		<input id="mapAddress" type="hidden" value="70 Rue Maurice Bouchery 59480 La Bassee" />
+    </div>
 	<h1>Contact</h1>	
 	<div class="cleaner_h30"></div>
 
@@ -63,14 +79,12 @@
 		{$codePostal} {$ville}
 		<br /><br />
 		<a href="#" id="showMap">Afficher sur la carte</a>
-		<input id="mapAddress" type="hidden" value="70 Rue Maurice Bouchery 59480 La Bassee" />
 	</div>
 	
 	<div class="col_w280">
 		<h3>T&eacute;l&eacute;phone</h3>
 		{$tel}
 	</div>
-	<div id="map-canvas" style="border:1px outset black; margin:0 auto; display:none; width:80%; height:200px;"></div>
 	<div class="cleaner"></div>
 </div>
 
@@ -87,8 +101,8 @@
 			<label for="message">Message:</label> <textarea id="message" name="message" rows="0" cols="0" class="required"></textarea>
 
 			<br /><br />
-			<input type="submit" class="submit_btn" name="submit" id="submit" value="Envoyer" />
-			<input type="reset" class="submit_btn" name="reset" id="reset" value="Effacer le formulaire" />				
+			<button class="button">Envoyer</button>
+			<button class="button">Effacer le formulaire</button>				
 		</form>		
 	</div>
 </div>
