@@ -1,6 +1,8 @@
 <?php
 require_once ('/src/utils/CollectionUtils.php');
 require_once ('/src/utils/StringUtils.php');
+require_once ('/src/utils/HttpMethodsEnum.php');
+
 class Routes
 {
 	const CONTROLLER_ROUTE_INDEX = "controller";
@@ -16,11 +18,12 @@ class Routes
 		//add default routes
 		$this->addRoute("/home", "acceuil/Home", "index", "GET");
 		$this->addRoute("/contact", "contact/Contact", "index", "GET");
+		$this->addRoute("/phones", "phones/Phones", "index", "GET");		
 		
 		/**
 		 * exemple de routes avec des paramètres
 		 */
-		$this->addRoute("/home/([0-9]+)/test/([0-9]+)", "acceuil/Home", "index", "GET", array("idToto", "idTiti"));
+		//$this->addRoute("/home/([0-9]+)/test/([0-9]+)", "acceuil/Home", "index", "GET", array("idToto", "idTiti"));
 	}
 	
 	/**
@@ -31,8 +34,13 @@ class Routes
 	 * @param unknown $controllerMethod
 	 * @param string $verb
 	 */
-	public function addRoute($url, $controller, $controllerMethod, $verb = "GET", Array $params = null)
+	public function addRoute($url, $controller, $controllerMethod, $verb = HttpMethodsEnum::GET, Array $params = null)
 	{
+		if(StringUtils::isBlank($verb))
+		{
+			$verb = HttpMethodsEnum::GET;
+		}
+		
 		$this->routes[$url] = array(
 				self::CONTROLLER_ROUTE_INDEX => $controller,
 				self::METHOD_ROUTE_INDEX => $controllerMethod,
@@ -57,7 +65,8 @@ class Routes
 			{
 				if(preg_match("#^" . $route . "$#", $url, $params) && $config[self::VERB_ROUTE_INDEX] == $_SERVER['REQUEST_METHOD'])
 				{
-					if($_SERVER['REQUEST_METHOD'] === "GET")
+					$usedMethod = strtoupper($_SERVER['REQUEST_METHOD']);
+					if($usedMethod === HttpMethodsEnum::GET)
 					{
 						$configParamNames = $config[self::PARAMS_ROUTE_INDEX];
 						//build associative params array
@@ -73,7 +82,7 @@ class Routes
 							$config[self::PARAMS_ROUTE_INDEX] = $params;
 						}
 					}
-					else if($_SERVER['REQUEST_METHOD'] === "POST")
+					else if($usedMethod === HttpMethodsEnum::POST)
 					{
 						$config[self::PARAMS_ROUTE_INDEX] = $_POST;
 					}

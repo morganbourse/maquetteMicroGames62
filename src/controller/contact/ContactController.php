@@ -9,6 +9,8 @@ require_once ("/src/utils/IniManager.php");
  */
 class ContactController extends Controller
 {
+	const TPL = "contact";
+	
 	/**
 	 * @see src/controller/Controller::index()
 	 */
@@ -16,7 +18,7 @@ class ContactController extends Controller
 	{
 		$settings = IniManager::getInstance("/config/config.ini");
 		$mapsKey = $settings->maps['key'];
-		$this->draw("contact", array(
+		$this->draw(self::TPL, array(
 			"address" => "adresse inconnue",
 			"codePostal" => "00000",
 			"ville" => "ville inconnue",

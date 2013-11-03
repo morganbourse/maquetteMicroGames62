@@ -2,13 +2,13 @@
 require_once ('/src/controller/Controller.php'); 
 
 /**
- * HomeController
+ * PhonesController
  * @author Morgan
  *
  */
-class HomeController extends Controller
+class PhonesController extends Controller
 {
-	const TPL = "home";
+	const TPL = "phones";
 	
 	/**
 	 * display home page

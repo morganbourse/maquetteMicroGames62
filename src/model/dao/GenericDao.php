@@ -28,7 +28,7 @@ class GenericDao
 
 			$this->database = new SafePDO("mysql:host=$host;dbname=$dbname;port=$port", $login, $pwd, $options);
 		} catch (Exception $e) {
-			echo "Impossible de se connecter à la base de données...";
+			echo "Impossible de se connecter ï¿½ la base de donnï¿½es...";
 			$this->database = null;
 			die();
 		}
