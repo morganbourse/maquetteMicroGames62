@@ -10,6 +10,13 @@
 
 <script language="javascript" type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+
+<script language="javascript" type="text/javascript" src="js/noty/jquery.noty.js"></script>
+<script language="javascript" type="text/javascript" src="js/noty/layouts/top.js"></script>
+<script language="javascript" type="text/javascript" src="js/noty/layouts/topLeft.js"></script>
+<script language="javascript" type="text/javascript" src="js/noty/layouts/topRight.js"></script>
+<script language="javascript" type="text/javascript" src="js/noty/themes/default.js"></script>
+
 <script language="javascript" type="text/javascript" src="js/script.js"></script>
 </head>
 <body>

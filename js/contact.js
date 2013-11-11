@@ -1,6 +1,7 @@
 var geocoder;
-	var map;
-	function initialize() {
+var map;
+
+function initialize() {
 	  geocoder = new google.maps.Geocoder();
 	  var latlng = new google.maps.LatLng(50.530848, 2.808443);
 	  var mapOptions = {
@@ -28,7 +29,11 @@ function showMap(address) {
 	});
 }
 
-$(function() {		
+$(function() {
+	var default_border_style = $("#author").css("border");
+	var error_border_style = "2px solid red";
+	var error_message_suffix = "_error_message";
+	
 	$("#dialog").hide();
 	
 	$(".button").button();
@@ -57,6 +62,63 @@ $(function() {
 		   };
 		   $("head").append(s);			   
 	}
+	
+	function reinitUiState()
+	{
+		var fields = new Array("author", "email", "phone", "subject", "message");
+		fields.forEach( 
+				function(value, index)
+				{
+					$("#" + value).css( "border", default_border_style );
+					$("#" + value + error_message_suffix).empty();
+					$("#" + value + error_message_suffix).hide();
+				}
+		);
+	}
+	
+	$("#contactForm").submit(
+		function(event)
+		{
+			event.preventDefault();
+			reinitUiState();
+			$.post("?/contact/mail", $("#contactForm").serialize(), null, "json").always(
+				function(data)
+				{
+					if(!data.success)
+					{
+						if (typeof data.fieldErrors != 'undefined' && data.fieldErrors != null) {
+							$().displayWarnNotification("Veuillez verifier le formulaire de contact.<br /><br />Certaines donn&eacute;es envoy&eacute;es sont incorrectes, ou non renseign&eacute;es", 10000);
+							
+							for(var key in data.fieldErrors)
+							{
+								$("#" + key).css("border", error_border_style);
+								$("#" + key + error_message_suffix).html(data.fieldErrors[key]);
+								$("#" + key + error_message_suffix).show();
+							}
+						}
+						
+						if(data.error != null && data.error.length > 0)
+						{
+							//show an error gritter
+							$().displayErrorNotification(data.error, 10000);
+						}
+					}
+					else
+					{
+						$().displaySuccessNotification("Votre message a bien &eacute;t&eacute; envoy&eacute; avec succ&egrave;s.<br /><br />Il sera pris en compte dans les plus bref delais.", 10000);
+						$("#reset").click();
+					}
+				}
+			);			
+		}
+	);
+	
+	$("#reset").click(
+			function()
+			{
+				reinitUiState();
+			}
+	);
 	
 	loadScript();
 });

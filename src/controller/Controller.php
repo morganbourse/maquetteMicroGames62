@@ -3,6 +3,8 @@ require_once ('/inc/rain.tpl.class.php');
 require_once ('/src/utils/CollectionUtils.php');
 require_once ('/src/utils/StringUtils.php');
 require_once ('/src/controller/ControllerException.php');
+require_once ('/inc/JSON.php');
+require_once ('/src/utils/HeaderUtils.php');
 
 /**
  * Base Controller
@@ -12,6 +14,7 @@ require_once ('/src/controller/ControllerException.php');
 abstract class Controller
 {
 	protected $tpl;
+	protected $json;
 
 	/**
 	 * Constructor
@@ -24,6 +27,7 @@ abstract class Controller
 		RainTPL::$tpl_ext = "tpl";
 
 		$this->tpl = new RainTPL();
+		$this->json = new Services_JSON();
 	}
 
 	/**
@@ -65,7 +69,18 @@ abstract class Controller
 			throw new ControllerException("The template name to load cannot be an empty string", "EMPTY_TEMPLATE_NAME");
 		}
 
-		$this->tpl->draw($templateName, true); // get the template as String
+		return $this->tpl->draw($templateName, true); // get the template as String
+	}
+	
+	/**
+	 * renderJson
+	 * 
+	 * @param array $jsonArray
+	 */
+	public function renderJson(Array $jsonArray, $httpCode = 200)
+	{
+		HeaderUtils::setHeader($httpCode, "application/json");
+		echo $this->json->encode($jsonArray);
 	}
 	
 	/**

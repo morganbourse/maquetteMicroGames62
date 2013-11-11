@@ -155,9 +155,26 @@ em { color: #000; }
 #contact_form {  padding: 0; }
 #contact_form form { margin: 0px; padding: 0px; }
 #contact_form form .input_field { width: 300px; padding: 5px; background: #fff; border: 1px solid #AAA; }
-#contact_form form label { display: block; width: 100px; margin-bottom: 10px; font-size: 14px; }
+#contact_form form label { display: block; width: 100px; margin-bottom: 10px; margin-top:2px; font-size: 14px; }
 #contact_form form textarea { width: 400px; height: 200px; padding: 5px; background: #fff; border: 1px solid #AAA; font-family: Arial, Helvetica, sans-serif; }
 #contact_form form .submit_btn { padding: 8px 14px; margin: 0px; margin-right: 80px; background: #fff; border: 1px solid #AAA; }
+
+span.required
+{
+	color:red;
+	vertical-align: super;
+	font-size: .75em;
+	margin-right: 2px;
+}
+
+span.error_message
+{
+	color:red;
+	margin-top:2px;
+	padding-left: 2px;
+	margin-bottom: 5px;
+	display: none;	
+}
 
 #templatemo_footer { 
 	width: 940px;

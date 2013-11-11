@@ -261,5 +261,24 @@ class StringUtils
 		$pattern = substr($pattern, 0, -strlen($matches[1])) . str_replace('e', '', $matches[1]);
 		return preg_replace($pattern, $replacement, $str);
 	}
+	
+	/**
+	 * format phoneNumber
+	 * 
+	 * @param String $phoneNumber
+	 * @param String $international
+	 * @return String
+	 */
+	public static function formatFrenchPhoneNumber($phoneNumber, $international = false){
+		//Supprimer tous les caractères qui ne sont pas des chiffres
+		$phoneNumber = preg_replace('/[^0-9]+/', '', $phoneNumber);
+		//Garder les 9 derniers chiffres
+		$phoneNumber = substr($phoneNumber, -9);
+		//On ajoute +33 si la variable $international vaut true et 0 dans tous les autres cas
+		$motif = $international ? '+33 (\1) \2 \3 \4 \5' : '0\1 \2 \3 \4 \5';
+		$phoneNumber = preg_replace('/(\d{1})(\d{2})(\d{2})(\d{2})(\d{2})/', $motif, $phoneNumber);
+		
+		return $phoneNumber;
+	}
 }
 ?>

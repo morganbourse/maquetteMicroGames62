@@ -16,9 +16,12 @@ class Routes
 	
 	private function __construct(){
 		//add default routes
-		$this->addRoute("/home", "acceuil/Home", "index", "GET");
-		$this->addRoute("/contact", "contact/Contact", "index", "GET");
-		$this->addRoute("/phones", "phones/Phones", "index", "GET");		
+		$this->addRoute("/home", "acceuil/Home", "index", HttpMethodsEnum::GET);
+		
+		$this->addRoute("/phones", "phones/Phones", "index", HttpMethodsEnum::GET);
+		
+		$this->addRoute("/contact", "contact/Contact", "index", HttpMethodsEnum::GET);
+		$this->addRoute("/contact/mail", "contact/Contact", "sendMail", HttpMethodsEnum::POST);
 		
 		/**
 		 * exemple de routes avec des paramètres
