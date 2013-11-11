@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
 	const TPL = "contact";
 	const TPL_MAIL = "contactMail";
-	const ERROR_MAIL_SEND_MSG = "Un probl&eacute;me est survenu lors de l'envoi de mail.<br />Veuillez r&eacute;essayer plus tard, ou utiliser l'adresse mail de contact.";
+	const ERROR_MAIL_SEND_MSG = "Un probl&egrave;me est survenu lors de l'envoi de mail.<br /><br />Veuillez r&eacute;essayer plus tard, ou utiliser l'adresse mail de contact.";
 	
 	/**
 	 * @see src/controller/Controller::index()
@@ -72,10 +72,14 @@ class ContactController extends Controller
 			{
 				$sendSuccessful = true;
 			}
+			else
+			{
+				$error = self::ERROR_MAIL_SEND_MSG;
+			}
 		}
 		catch(Exception $ex)
 		{
-			$error = self::ERROR_MAIL_SEND_MSG;			
+			$error = self::ERROR_MAIL_SEND_MSG;
 		}
 		
 		$json = array("success" => $sendSuccessful, "error" => $error, "fieldErrors" => null);

@@ -36,7 +36,7 @@ $(
 					}
 				);
 				
-				$(this).addClass(menuSelectedClass)
+				$(this).addClass(menuSelectedClass);
 			}
 		);
 		
@@ -59,10 +59,10 @@ $(
 				layout: 'topRight',
 				type: 'error',
 				timeout: autoclose,
-				text: message,
+				text: "<u>Erreur</u><br /><br />" + message,
 				closeWith: ['button']
 			});
-		}
+		};
 		
 		/**
 		 * Display an success notification at the top right of the screen
@@ -73,10 +73,10 @@ $(
 				layout: 'topRight',
 				type: 'success',
 				timeout: autoclose,
-				text: message,
+				text: "<u>Succes</u><br /><br />" + message,
 				closeWith: ['button']
 			});
-		}
+		};
 		
 		/**
 		 * Display an information notification at the top right of the screen
@@ -86,11 +86,11 @@ $(
 			noty({
 				layout: 'topRight',
 				type: 'information',
-				timeout: 8000,
-				text: autoclose,
+				timeout: autoclose,
+				text: "<u>Info</u><br /><br />" + message,
 				closeWith: ['button']
 			});
-		}
+		};
 		
 		/**
 		 * Display an warning notification at the top right of the screen
@@ -101,9 +101,9 @@ $(
 				layout: 'topRight',
 				type: 'warning',
 				timeout: autoclose,
-				text: message,
+				text: "<u>Attention</u><br /><br />" + message,
 				closeWith: ['button']
 			});
-		}
+		};
 	}
 );

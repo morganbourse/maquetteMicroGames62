@@ -41,15 +41,24 @@ $(function() {
 	$("#showMap").click(
 		function( event ) {
 			event.preventDefault();
-			$("#mapDialog").dialog({
-				modal: true,
-				open: function( event, ui ) {
-					var address = $('#mapAddress').val();
-					showMap(address);
-				},					
-				height:"600",
-				width:"800"
-			});
+			try
+			{
+				var address = $('#mapAddress').val();
+				showMap(address);
+				
+				$("#mapDialog").dialog({
+					modal: true,
+					open: function( event, ui ) {
+						
+					},					
+					height:"600",
+					width:"800"
+				});
+			}
+			catch(e)
+			{
+				$().displayErrorNotification("Impossible d'afficher l'adresse sur la carte.", 10000);
+			}
 		}
 	);
 	

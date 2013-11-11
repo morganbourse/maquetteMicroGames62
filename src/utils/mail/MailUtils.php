@@ -64,7 +64,10 @@ class MailUtils
 			
 			$t1 = $this->microtime_float();
 			
-			$duree = $t1-$t0;
+			//TODO : local mock;
+			$envoi = $reponse;
+			
+			/*$duree = $t1-$t0;
 			
 			if($reponse && $duree > 1.50)
 			{
@@ -79,14 +82,10 @@ class MailUtils
 					$t2 = $this->microtime_float();
 					$pause = $t2-$t1;
 				}
-			}
+			}*/
 		}
 
-		if($envoi){
-			return true;
-		}
-
-		return false;
+		return $envoi;
 	}
 
 
