@@ -38,19 +38,19 @@ $(function() {
 	
 	$(".button").button();
 	
-	$("#showMap").click(
+	$(".showMap").click(
 		function( event ) {
 			event.preventDefault();
 			try
 			{
-				var address = $('#mapAddress').val();
+				var address = $(this).attr("title");
 				showMap(address);
 				
 				$("#mapDialog").dialog({
 					modal: true,
 					open: function( event, ui ) {
 						
-					},					
+					},
 					height:"600",
 					width:"800"
 				});

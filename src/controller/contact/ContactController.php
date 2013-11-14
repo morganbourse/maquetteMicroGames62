@@ -3,6 +3,7 @@ require_once ('/src/controller/Controller.php');
 require_once ('/src/utils/IniManager.php'); 
 require_once ('/src/utils/mail/MailUtils.php');
 require_once ('src/controller/contact/ContactValidator.php');
+require_once ('/src/model/services/impl/ContactService.php');
 
 /**
  * ContactController
@@ -22,11 +23,12 @@ class ContactController extends Controller
 	{
 		$settings = IniManager::getInstance("/config/config.ini");
 		$mapsKey = $settings->maps['key'];
+		
+		$contactService = new ContactService();
+		$contactList = $contactService->getAllContact();
+		
 		$this->draw(self::TPL, array(
-			"address" => "adresse inconnue",
-			"codePostal" => "00000",
-			"ville" => "ville inconnue",
-			"tel" => "03.21.00.00.00",
+			"contactList" => $contactList,
 			"mapsKey" => $mapsKey
 		));
 	}

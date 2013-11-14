@@ -3,28 +3,31 @@
 <div class="content_box">
 	<div id="mapDialog" title="Carte">
 		<div id="map-canvas" style="border:1px outset black; margin:0 auto; display:none; width:100%; height:100%;"></div>
-		<input id="mapAddress" type="hidden" value="70 Rue Maurice Bouchery 59480 La Bassee" />
     </div>
 	<h1>Contact</h1>
 </div>
 
 <div class="content_box">
 	<h4>Coordonn&eacute;es</h4>
+</div>
+
+{loop="contactList"}
+<div class="content_box">	
 	<div class="col_w280">
 		<h3>Adresse</h3>
-		{$address}<br />
-		{$codePostal} {$ville}
+		{$value->getRue()}<br />
+		{$value->codePostal} {$value->getVille()}
 		<br /><br />
-		<a href="#" id="showMap">Afficher sur la carte</a>
+		<a href="#" class="showMap" title="{$value->getRue()} {$value->codePostal} {$value->getVille()}">Afficher sur la carte</a>
 	</div>
 	
 	<div class="col_w280">
 		<h3>T&eacute;l&eacute;phone</h3>
-		{$tel}
-	</div>	
+		{$value->getTelephone()}
+	</div>
 	<div class="cleaner"></div>
 </div>
-
+{/loop}
 
 <div class="content_box last_box">
 	<div id="contact_form">
