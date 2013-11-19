@@ -59,8 +59,23 @@ em { color: #000; }
 .btn_more a span { font-size: 18px; color: #000; }
 .btn_more a:hover { color: #000; }
 
-#templatemo_header_wrapper { width: 100%; background-color: #000; height:250px; }
-#templatemo_header { width: 980px; margin: 0 auto; background: url(../images/banniere.png) no-repeat top center; height:inherit; }
+#templatemo_header_wrapper { width: 100%; /*background-color: #000;*/ height:250px; }
+#templatemo_header { 
+	width: 960px; 
+	margin: 0 auto; 
+	background: url(../images/banniere.png) no-repeat center 10px rgba(0, 0, 0, 0.4); 
+	height:inherit;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	margin-top:10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1); 
+  	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1);
+}
 #site_title { float: left; width: 600px; padding: 30px 100px 0; } 
 #site_title a { margin: 0px; padding: 0px; font-size: 30px; color: #ffffff; font-weight: normal;text-decoration: none; }
 #site_title a span { text-align: left; font-size: 16px; color: #fff; font-weight: normal; margin-left: 5px; }
@@ -89,7 +104,7 @@ em { color: #000; }
 	background: url(../images/templatemo_menu_hover.png) no-repeat;
 }
 
-#templatemo_wrapper { width: 980px; margin: 80px auto; }
+#templatemo_wrapper { width: 980px; margin: 95px auto; }
 
 #search_box { float: right; width: 320px; height: 40px; margin: 25px 0 0 0; background: url(../images/templatemo_search.png) no-repeat; }
 #search_box form { clear: both; width: 320px; height: 40px; padding: 0; } 
@@ -106,7 +121,7 @@ em { color: #000; }
 
 #templatemo_content_top { width: 980px; height: 35px; background: url(../images/templatemo_content_top.png) no-repeat; }
 #templatemo_content_bottom { width: 980px; height: 35px; background: url(../images/templatemo_content_bottom.png) no-repeat; }
-#templatemo_content { width: 960px; padding: 10px; background: url(../images/templatemo_content_middle.png) repeat-y; }
+#templatemo_content { width: 960px; padding: 10px; background: url(../images/templatemo_content_middle.png) repeat-y; min-height:600px; height:auto;}
 #templatemo_content p { margin-bottom: 10px; }
 
 #templatemo_main_content { float: left; width: 590px; padding: 0 30px; }
@@ -155,7 +170,7 @@ em { color: #000; }
 #contact_form {  padding: 0; }
 #contact_form form { margin: 0px; padding: 0px; }
 #contact_form form .input_field { width: 300px; padding: 5px; background: #fff; border: 1px solid #AAA; }
-#contact_form form label { display: block; width: 100px; margin-bottom: 10px; margin-top:2px; font-size: 14px; }
+#contact_form form label { display: block; width: auto; margin-bottom: 10px; margin-top:2px; font-size: 14px; }
 #contact_form form textarea { width: 400px; height: 200px; padding: 5px; background: #fff; border: 1px solid #AAA; font-family: Arial, Helvetica, sans-serif; }
 #contact_form form .submit_btn { padding: 8px 14px; margin: 0px; margin-right: 80px; background: #fff; border: 1px solid #AAA; }
 
@@ -254,11 +269,15 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     background-color: #CCCCCC;
     border: 1px solid #BBBBBB;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; 
+  	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
 }
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
     border-color: rgba(82, 168, 236, 1);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1); 
+  	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.085) inset, 0 0 8px rgba(0, 102, 170, 1);
     outline: 0 none;
 }
 input[type="radio"], input[type="checkbox"] {
@@ -288,6 +307,8 @@ select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="c
     background-color: #C9C9C9;
     border-color: #BBBBBB;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.024) inset;
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.024) inset; 
+  	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.024) inset;
     color: #ADAFAE;
     cursor: not-allowed;
 }
