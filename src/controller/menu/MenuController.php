@@ -1,6 +1,6 @@
 <?php
-	require_once ('/src/model/services/impl/MenuService.php');	
-	require_once ('/src/controller/Controller.php');
+	require_once (ROOT_DIR . '/src/model/services/impl/MenuService.php');	
+	require_once (ROOT_DIR . '/src/controller/Controller.php');
 						
 	/**
 	 * Menu controller
@@ -47,7 +47,7 @@
 						$className = 'class="current"';
 					}
 					
-					$menuContentHtml .= '<li><a href="?/' . $pageName . '"' . $className . '>' . $tabLabel . '</a></li>';
+					$menuContentHtml .= '<li><a href="?/' . $pageName . '" ' . $className . '>' . $tabLabel . '</a></li>';
 				}
 			}
 			

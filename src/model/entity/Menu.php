@@ -1,5 +1,5 @@
 <?php
-	require_once('Entity.php');
+	require_once(ROOT_DIR . '/src/model/entity/Entity.php');
 	class Menu extends Entity
 	{
 		private $label;

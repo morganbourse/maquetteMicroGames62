@@ -55,13 +55,15 @@ $(
 		 */
 		$.fn.displayErrorNotification = function(message, autoclose)
 		{
-			noty({
+			var notif = noty({
 				layout: 'topRight',
 				type: 'error',
 				timeout: autoclose,
 				text: "<u>Erreur</u><br /><br />" + message,
 				closeWith: ['button']
 			});
+			
+			return notif;
 		};
 		
 		/**
@@ -69,13 +71,15 @@ $(
 		 */
 		$.fn.displaySuccessNotification = function(message, autoclose)
 		{
-			noty({
+			var notif = noty({
 				layout: 'topRight',
 				type: 'success',
 				timeout: autoclose,
 				text: "<u>Succes</u><br /><br />" + message,
 				closeWith: ['button']
 			});
+			
+			return notif;
 		};
 		
 		/**
@@ -83,13 +87,15 @@ $(
 		 */
 		$.fn.displayInfoNotification = function(message, autoclose)
 		{	    
-			noty({
+			var notif = noty({
 				layout: 'topRight',
 				type: 'information',
 				timeout: autoclose,
 				text: "<u>Info</u><br /><br />" + message,
 				closeWith: ['button']
 			});
+			
+			return notif;
 		};
 		
 		/**
@@ -97,13 +103,15 @@ $(
 		 */
 		$.fn.displayWarnNotification = function(message, autoclose)
 		{	    
-			noty({
+			var notif = noty({
 				layout: 'topRight',
 				type: 'warning',
 				timeout: autoclose,
 				text: "<u>Attention</u><br /><br />" + message,
 				closeWith: ['button']
 			});
+			
+			return notif;
 		};
 	}
 );

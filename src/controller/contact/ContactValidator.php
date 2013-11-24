@@ -1,6 +1,6 @@
 <?php
-require_once ('/src/utils/StringUtils.php');
-require_once ('/src/utils/mail/MailUtils.php');
+require_once (ROOT_DIR . '/src/utils/StringUtils.php');
+require_once (ROOT_DIR . '/src/utils/mail/MailUtils.php');
 final class ContactValidator
 {
 	/**

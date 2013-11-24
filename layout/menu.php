@@ -5,7 +5,7 @@
 			 * construire le menu avec les enregistrement de la table menu
 			 * ex : echo "<li><a href='index.php?section=" . $ligne["tabId"] . "' class='$current'>$ligne["tabName"]</a></li>"
 			 */
-			require_once ('/src/controller/menu/MenuController.php');
+			require_once (ROOT_DIR . '/src/controller/menu/MenuController.php');
 			$ctrl = new MenuController();
 			echo $ctrl->getMenu();
 		?>

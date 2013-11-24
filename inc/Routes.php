@@ -1,7 +1,7 @@
 <?php
-require_once ('/src/utils/CollectionUtils.php');
-require_once ('/src/utils/StringUtils.php');
-require_once ('/src/utils/HttpMethodsEnum.php');
+require_once (ROOT_DIR . '/src/utils/CollectionUtils.php');
+require_once (ROOT_DIR . '/src/utils/StringUtils.php');
+require_once (ROOT_DIR . '/src/utils/HttpMethodsEnum.php');
 
 class Routes
 {

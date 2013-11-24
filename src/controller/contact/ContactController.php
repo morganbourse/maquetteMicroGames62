@@ -1,9 +1,9 @@
 <?php
-require_once ('/src/controller/Controller.php');
-require_once ('/src/utils/IniManager.php'); 
-require_once ('/src/utils/mail/MailUtils.php');
-require_once ('src/controller/contact/ContactValidator.php');
-require_once ('/src/model/services/impl/ContactService.php');
+require_once (ROOT_DIR . '/src/controller/Controller.php');
+require_once (ROOT_DIR . '/src/utils/IniManager.php'); 
+require_once (ROOT_DIR . '/src/utils/mail/MailUtils.php');
+require_once (ROOT_DIR . '/src/controller/contact/ContactValidator.php');
+require_once (ROOT_DIR . '/src/model/services/impl/ContactService.php');
 
 /**
  * ContactController
@@ -21,7 +21,7 @@ class ContactController extends Controller
 	 */
 	public function index()
 	{
-		$settings = IniManager::getInstance("/config/config.ini");
+		$settings = IniManager::getInstance(ROOT_DIR . "/config/config.ini");
 		$mapsKey = $settings->maps['key'];
 		
 		$contactService = new ContactService();
@@ -64,7 +64,7 @@ class ContactController extends Controller
 				"message" => $message
 			));		
 			
-			$settings = IniManager::getInstance("/config/config.ini");
+			$settings = IniManager::getInstance(ROOT_DIR . "/config/config.ini");
 			$mailReceiver = $settings->mail['receiver'];
 			$receiverSubject = $settings->mail['subject'];
 		

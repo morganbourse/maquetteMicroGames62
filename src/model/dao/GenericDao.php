@@ -1,6 +1,6 @@
 <?php
-require_once ('/src/model/utils/SafePDO.php');
-require_once ("/src/utils/IniManager.php");
+require_once (ROOT_DIR . '/src/model/utils/SafePDO.php');
+require_once (ROOT_DIR . "/src/utils/IniManager.php");
 class GenericDao
 {
 	protected $database;
@@ -12,13 +12,14 @@ class GenericDao
 	public function GenericDao($tableName)
 	{
 		try {
-			$settings = IniManager::getInstance("/config/config.ini");
+			$settings = IniManager::getInstance(ROOT_DIR . "/config/config.ini");
 			$host = trim($settings->database['host']);
 			$port = trim($settings->database['port']);
 			$dbname = trim($settings->database['schema']);
 			$login = trim($settings->database['login']);
 			$pwd = trim($settings->database['pwd']);
 			$persistantConnection = $settings->database['persistantConnection'];
+			
 			$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
 
 			if($persistantConnection)
@@ -28,7 +29,7 @@ class GenericDao
 
 			$this->database = new SafePDO("mysql:host=$host;dbname=$dbname;port=$port", $login, $pwd, $options);
 		} catch (Exception $e) {
-			echo "Impossible de se connecter � la base de donn�es...";
+			echo "Impossible de se connecter à la base de données...";
 			$this->database = null;
 			die();
 		}

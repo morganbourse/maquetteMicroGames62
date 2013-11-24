@@ -1,7 +1,7 @@
 <?php
-require_once ('/src/model/dao/ContactDao.php');
-require_once ('/src/model/entity/Contact.php');
-require_once ('/src/model/services/IContactService.php');
+require_once (ROOT_DIR . '/src/model/dao/ContactDao.php');
+require_once (ROOT_DIR . '/src/model/entity/Contact.php');
+require_once (ROOT_DIR . '/src/model/services/IContactService.php');
 
 /**
  * Contact Service

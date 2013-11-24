@@ -1,5 +1,5 @@
 <?php
-	require_once('GenericDao.php');
+	require_once(ROOT_DIR . '/src/model/dao/GenericDao.php');
 	class MenuDao extends GenericDao
 	{
 		const TABLE_NAME = "menu";

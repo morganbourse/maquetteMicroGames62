@@ -1,10 +1,10 @@
 <?php
-require_once ('/inc/rain.tpl.class.php');
-require_once ('/src/utils/CollectionUtils.php');
-require_once ('/src/utils/StringUtils.php');
-require_once ('/src/controller/ControllerException.php');
-require_once ('/inc/JSON.php');
-require_once ('/src/utils/HeaderUtils.php');
+require_once (ROOT_DIR . '/inc/rain.tpl.class.php');
+require_once (ROOT_DIR . '/src/utils/CollectionUtils.php');
+require_once (ROOT_DIR . '/src/utils/StringUtils.php');
+require_once (ROOT_DIR . '/src/controller/ControllerException.php');
+require_once (ROOT_DIR . '/inc/JSON.php');
+require_once (ROOT_DIR . '/src/utils/HeaderUtils.php');
 
 /**
  * Base Controller
@@ -45,7 +45,7 @@ abstract class Controller
 
 		if(StringUtils::isEmpty($templateName))
 		{
-			throw new ControllerException("The template name to load cannot be an empty string", "EMPTY_TEMPLATE_NAME");
+			throw new ControllerException("The template name to load cannot be an empty string");
 		}
 				
 		$this->tpl->draw($templateName); // draw the template
@@ -66,7 +66,7 @@ abstract class Controller
 
 		if(StringUtils::isEmpty($templateName))
 		{
-			throw new ControllerException("The template name to load cannot be an empty string", "EMPTY_TEMPLATE_NAME");
+			throw new ControllerException("The template name to load cannot be an empty string");
 		}
 
 		return $this->tpl->draw($templateName, true); // get the template as String

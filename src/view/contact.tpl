@@ -22,8 +22,31 @@
 	</div>
 	
 	<div class="col_w280">
-		<h3>T&eacute;l&eacute;phone</h3>
-		{$value->getTelephone()}
+		<h3>T&eacute;l&eacute;phone / Mail</h3>
+		<span>
+			<table>
+				<tr>
+					<td>
+						<img src="images/phoneNumber.png" alt="tel :" width="18" height="18" />
+					</td>
+					<td>
+						{$value->getTelephone()}
+					</td>
+				</tr>
+			</table>
+		</span>		
+		<span>
+			<table>
+				<tr>
+					<td>
+						<img src="images/mail.png" alt="mail :" width="25" height="18" />
+					</td>
+					<td>
+						<a href="mailto:{$value->getMail()}">{$value->getMail()}</a>
+					</td>
+				</tr>
+			</table>
+		</span>		
 	</div>
 	<div class="cleaner"></div>
 </div>
@@ -32,7 +55,7 @@
 <div class="content_box last_box">
 	<div id="contact_form">
 		<h4>Me contacter par E-Mail</h4>
-		<form method="post" name="contact" id="contactForm" action="#">
+		<form method="post" name="contact" id="contactForm" action="?/contact/mail">
 
 			<label for="author"><span class="required">*</span>Nom :</label> <input type="text" id="author" name="author" class="input_field" /><br />
 			<span class="error_message" id="author_error_message"></span>

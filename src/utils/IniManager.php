@@ -22,7 +22,7 @@ class IniManager {
      * @return Settings
      */
     public static function getInstance($ini_file) {
-        if(! isset(self::$instance)) {
+        if(!isset(self::$instance)) {
             self::$instance = new IniManager($ini_file);           
         }
         return self::$instance;

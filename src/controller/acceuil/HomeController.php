@@ -1,5 +1,5 @@
 <?php
-require_once ('/src/controller/Controller.php'); 
+require_once (ROOT_DIR . '/src/controller/Controller.php'); 
 
 /**
  * HomeController

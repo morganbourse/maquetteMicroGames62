@@ -1,6 +1,6 @@
 <?php
-require_once('/src/utils/mail/MailFormatException.php');
-require_once('/src/utils/StringUtils.php');
+require_once(ROOT_DIR . '/src/utils/mail/MailFormatException.php');
+require_once(ROOT_DIR . '/src/utils/StringUtils.php');
 /**
  * Send mail utils class
  * @author Morgan
@@ -17,12 +17,12 @@ class MailUtils
 	{
 		if(!self::isValidMail($from))
 		{
-			throw new MailFormatException("L'adresse mail de l'expediteur $from est invalide.", "INVALID_MAIL");
+			throw new MailFormatException("L'adresse mail de l'expediteur $from est invalide.");
 		}
 		
 		if(!self::isValidMail($destinataire))
 		{
-			throw new MailFormatException("L'adresse mail du destinataire est $destinataire invalide.", "INVALID_MAIL");
+			throw new MailFormatException("L'adresse mail du destinataire est $destinataire invalide.");
 		}
 		
 		$this->expediteur = $from;
@@ -60,7 +60,7 @@ class MailUtils
 			$tentative++;
 			$t0 = $this->microtime_float();
 			
-			$reponse = @mail($this->destinataire, $object, $message, $this->header);
+			$reponse = mail($this->destinataire, $object, $message, $this->header);
 			
 			$t1 = $this->microtime_float();
 			

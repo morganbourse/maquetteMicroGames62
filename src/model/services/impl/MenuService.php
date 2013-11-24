@@ -1,7 +1,7 @@
 <?php
-require_once ('/src/model/dao/MenuDao.php');
-require_once ('/src/model/entity/Menu.php');
-require_once ('/src/model/services/IMenuService.php');
+require_once (ROOT_DIR . '/src/model/dao/MenuDao.php');
+require_once (ROOT_DIR . '/src/model/entity/Menu.php');
+require_once (ROOT_DIR . '/src/model/services/IMenuService.php');
 
 /**
  * Menu Service

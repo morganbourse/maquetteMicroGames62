@@ -27,7 +27,7 @@
         <div class="cleaner"></div>
     </div> <!-- end of header -->
 	<?php
-		require_once('menu.php');
+		require_once(ROOT_DIR . '/layout/menu.php');
 	?>   
     <div class="cleaner"></div>
 </div>

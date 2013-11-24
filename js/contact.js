@@ -33,6 +33,7 @@ $(function() {
 	var default_border_style = $("#author").css("border");
 	var error_border_style = "2px solid red";
 	var error_message_suffix = "_error_message";
+	var infoNotif = null;
 	
 	$("#dialog").hide();
 	
@@ -89,10 +90,12 @@ $(function() {
 		function(event)
 		{
 			event.preventDefault();
+			//infoNotif = $().displayInfoNotification("Votre message est en cours d'envoi...", false);
 			reinitUiState();
 			$.post("?/contact/mail", $("#contactForm").serialize(), null, "json").always(
 				function(data)
 				{
+					//infoNotif.close();
 					if(!data.success)
 					{
 						if (typeof data.fieldErrors != 'undefined' && data.fieldErrors != null) {

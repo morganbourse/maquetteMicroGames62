@@ -1,6 +1,6 @@
 <?php
-require_once ('/inc/Routes.php');
-require_once ('/src/utils/HeaderUtils.php');
+require_once (ROOT_DIR . '/inc/Routes.php');
+require_once (ROOT_DIR . '/src/utils/HeaderUtils.php');
 
 /**
  * Dispatch request for call controller method
@@ -9,18 +9,19 @@ require_once ('/src/utils/HeaderUtils.php');
  *
  */
 class FrontController {
-	const CONTROLLER_EXTENSION = "Controller";	
-	const CONTROLLER_PATH = DIRECTORY_SEPARATOR;
+	const CONTROLLER_EXTENSION = "Controller";
 	const PHP_EXTENSION = ".php";
 	const DEFAULT_URL = "/home";
 	const REST_URL = "QUERY_STRING";
 	
 	protected $controller;
+	protected $controllerPath;
 	protected $action;
 	protected $params = array ();
 	protected $basePath = "/";
 	
 	public function __construct() {
+		$this->controllerPath = DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "controller". DIRECTORY_SEPARATOR;
 		$this->parseUri ();
 		$this->run ();
 	}
@@ -57,7 +58,7 @@ class FrontController {
 	 * @throws InvalidArgumentException
 	 */
 	protected function setController($controller, $route) {
-		$controllerPath = __DIR__ . self::CONTROLLER_PATH . $controller . self::CONTROLLER_EXTENSION . self::PHP_EXTENSION;
+		$controllerPath = ROOT_DIR . $this->controllerPath . $controller . self::CONTROLLER_EXTENSION . self::PHP_EXTENSION;
 		$controller = ucfirst(basename($controller)) . self::CONTROLLER_EXTENSION;		
 		
 		if (!is_file ( $controllerPath )) {
