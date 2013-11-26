@@ -231,6 +231,19 @@ class StringUtils
 	public static function ifEmpty($str, $replacement) {
 		return (StringUtils::isEmpty($str) ? $replacement : $str);
 	}
+	
+	/**
+	 * Returns a fallback value when a given string is blank
+	 *
+	 * @param string $str Input string
+	 * @param string $replacement Fallback string
+	 * @return string
+	 * @static
+	 */
+	public static function ifBlank($str, $replacement) {
+		return (StringUtils::isBlank($str) ? $replacement : $str);
+	}
+	
 	/**
 	 * Replaces all occurrences of $from by $to in a given string
 	 *
